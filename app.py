@@ -64,6 +64,12 @@ def human_resources(hospital):
 
     return data
 
+@app.route('/lga/ward/hospital/<hospital>/map')
+def show_map(hospital):
+    hospital = hospital.capitalize()
+    map_url = data_csv[data_csv['Health Facility'].str.capitalize() == hospital]['Map url'].iloc[0]
+    return f"<img src={map_url} alt= 'Map' >"
+
 
 if __name__ == '__main__':
     app.run(debug=True)
