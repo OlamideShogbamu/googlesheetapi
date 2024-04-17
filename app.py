@@ -75,6 +75,7 @@ def show_map(hospital):
 def show_c_map(hospital):
     hospital = hospital.capitalize()
     map_url = data_csv[data_csv['Health Facility'].str.capitalize() == hospital]['Map url'].iloc[0]
+    map_url = [map_url]
     return map_url
 
 if __name__ == '__main__':
