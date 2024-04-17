@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, send_file
 import pandas as pd
 
 app = Flask(__name__)
@@ -68,13 +68,13 @@ def human_resources(hospital):
 def show_map(hospital):
     hospital = hospital.capitalize()
     map_url = data_csv[data_csv['Health Facility'].str.capitalize() == hospital]['Map url'].iloc[0]
-    return f"<img src={map_url} alt= 'Map' >"
+    return send_file(map_url)
+    #return f"<img src={map_url} alt= 'Map' >"
 
 @app.route('/lga/ward/hospital/<hospital>/cmap/')
 def show_c_map(hospital):
     hospital = hospital.capitalize()
     map_url = data_csv[data_csv['Health Facility'].str.capitalize() == hospital]['Map url'].iloc[0]
-    map_url = [map_url, 'Go back']
     return map_url
 
 if __name__ == '__main__':
